@@ -1,0 +1,41 @@
+export const siteConfig = {
+  name: "Yudiya Ahrian",
+  title: "Yudiya Ahrian Portfolio",
+  description:
+    "Full-Stack Developer with 2+ years of experience building cross-platform mobile and web applications. Specialized in Flutter, Next.js, Laravel, and Firebase.",
+  tagline: "Fullstack & Mobile Developer",
+  url: "https://yudiyaahrian.dev",
+  ogImage: "https://yudiyaahrian.dev/og-image.png",
+  email: "yudiyaahrian@gmail.com",
+  location: "Depok, Jawa Barat, Indonesia",
+  openToWork: true,
+  social: {
+    github: "https://github.com/yudiyahrian",
+    twitter: "https://twitter.com/yudiyahrian",
+    linkedin: "https://linkedin.com/in/yudiyahrian",
+    // devto: "https://dev.to/yudiyaahrian",
+  },
+  nav: [
+    { label: "Home", href: "/", icon: "🏠" },
+    { label: "About", href: "/about", icon: "👤" },
+    { label: "Experience", href: "/experience", icon: "💼" },
+    { label: "Projects", href: "/projects", icon: "🚀" },
+    { label: "Skills", href: "/skills", icon: "⚡" },
+    { label: "Blog", href: "/blog", icon: "📝" },
+    { label: "Contact", href: "/contact", icon: "✉️" },
+  ],
+  roles: [
+    "Flutter Developer",
+    "Fullstack Developer",
+    "Next.js Developer",
+    "Laravel Developer",
+    "Mobile Developer",
+    "React JS Developer",
+  ],
+  stats: {
+    yearsExperience: 2,
+    projectsShipped: 12,
+    githubStars: 0,
+    happyClients: 5,
+  },
+};

@@ -1,0 +1,554 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@300;400;500;600;700&display=swap')
+layer(base);
+
+@import 'tailwindcss';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --font-pixel: 'Press Start 2P', monospace;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --color-pixel-blue: #3b82f6;
+  --color-pixel-cyan: #06b6d4;
+  --color-pixel-green: #22c55e;
+  --color-pixel-yellow: #eab308;
+  --color-pixel-red: #ef4444;
+  --color-pixel-purple: #a855f7;
+  --color-pixel-pink: #ec4899;
+  --color-pixel-orange: #f97316;
+
+  --color-dark-600: #475569;
+  --color-dark-700: #334155;
+  --color-dark-800: #1e293b;
+  --color-dark-900: #0f172a;
+
+  --breakpoint-xs: 375px;
+
+  --animate-pixel-float: pixelFloat 3s ease-in-out infinite;
+  --animate-pixel-blink: pixelBlink 1s steps(1) infinite;
+  --animate-scan-line: scanLine 8s linear infinite;
+  --animate-type-cursor: typeCursor 0.8s steps(1) infinite;
+  --animate-glitch: glitch 5s infinite;
+  --animate-crt-flicker: crtFlicker 0.15s infinite;
+  --animate-particle-rise: particleRise 4s ease-out infinite;
+  --animate-rainbow-border: rainbowBorder 3s linear infinite;
+
+  --shadow-pixel: 4px 4px 0px #1e293b;
+  --shadow-pixel-blue: 4px 4px 0px #2563eb;
+  --shadow-pixel-green: 4px 4px 0px #16a34a;
+  --shadow-pixel-red: 4px 4px 0px #dc2626;
+  --shadow-pixel-yellow: 4px 4px 0px #ca8a04;
+  --shadow-pixel-lg: 8px 8px 0px #1e293b;
+  --shadow-pixel-xl: 12px 12px 0px #1e293b;
+  --shadow-crt:
+    inset 0 0 60px rgba(0, 0, 0, 0.5), 0 0 20px rgba(59, 130, 246, 0.3);
+  --shadow-glow:
+    0 0 20px rgba(59, 130, 246, 0.5), 0 0 40px rgba(59, 130, 246, 0.3);
+  --shadow-glow-green: 0 0 20px rgba(34, 197, 94, 0.5);
+  --shadow-glow-red: 0 0 20px rgba(239, 68, 68, 0.5);
+
+  --background-image-pixel-grid:
+    linear-gradient(rgba(59, 130, 246, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
+  --background-image-scan-lines: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+
+  --background-size-pixel-grid: 32px 32px;
+
+  --border-width-3: 3px;
+
+  @keyframes pixelFloat {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+  @keyframes pixelBlink {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+  @keyframes scanLine {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(100vh);
+    }
+  }
+  @keyframes typeCursor {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+  @keyframes glitch {
+    0%,
+    95%,
+    100% {
+      transform: translateX(0);
+    }
+    96% {
+      transform: translateX(-2px);
+    }
+    97% {
+      transform: translateX(2px);
+    }
+    98% {
+      transform: translateX(-1px);
+    }
+  }
+  @keyframes crtFlicker {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.98;
+    }
+  }
+  @keyframes particleRise {
+    0% {
+      transform: translateY(100vh) scale(0);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 0.5;
+    }
+    100% {
+      transform: translateY(-20vh) scale(1.5);
+      opacity: 0;
+    }
+  }
+  @keyframes rainbowBorder {
+    0% {
+      border-color: #3b82f6;
+    }
+    16% {
+      border-color: #06b6d4;
+    }
+    33% {
+      border-color: #22c55e;
+    }
+    50% {
+      border-color: #eab308;
+    }
+    66% {
+      border-color: #ef4444;
+    }
+    83% {
+      border-color: #a855f7;
+    }
+    100% {
+      border-color: #3b82f6;
+    }
+  }
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+@utility pixel-border {
+  /* Pixel border component */
+  border: 3px solid currentColor;
+  box-shadow: 4px 4px 0px currentColor;
+  image-rendering: pixelated;
+}
+
+@utility pixel-border-blue {
+  border: 3px solid #3b82f6;
+  box-shadow: 4px 4px 0px #1d4ed8;
+}
+
+@utility pixel-border-green {
+  border: 3px solid #22c55e;
+  box-shadow: 4px 4px 0px #15803d;
+}
+
+@utility pixel-border-yellow {
+  border: 3px solid #eab308;
+  box-shadow: 4px 4px 0px #a16207;
+}
+
+@utility pixel-border-red {
+  border: 3px solid #ef4444;
+  box-shadow: 4px 4px 0px #b91c1c;
+}
+
+@utility pixel-border-purple {
+  border: 3px solid #a855f7;
+  box-shadow: 4px 4px 0px #7e22ce;
+}
+
+@utility pixel-btn {
+  /* Pixel button */
+  @apply font-pixel text-xs px-4 py-3 border-3 cursor-pointer transition-all duration-100 relative;
+  image-rendering: pixelated;
+  user-select: none;
+
+  &:active {
+    transform: translate(4px, 4px);
+    box-shadow: none !important;
+  }
+}
+
+@utility pixel-btn-primary {
+  @apply pixel-btn bg-pixel-blue text-white border-blue-600;
+  box-shadow: 4px 4px 0px #1d4ed8;
+}
+
+@utility pixel-btn-secondary {
+  @apply pixel-btn bg-transparent text-pixel-blue border-pixel-blue dark:border-pixel-blue;
+  box-shadow: 4px 4px 0px #1d4ed8;
+}
+
+@utility pixel-btn-green {
+  @apply pixel-btn bg-pixel-green text-white border-green-600;
+  box-shadow: 4px 4px 0px #15803d;
+}
+
+@utility pixel-btn-red {
+  @apply pixel-btn bg-pixel-red text-white border-red-700;
+  box-shadow: 4px 4px 0px #b91c1c;
+}
+
+@utility pixel-card {
+  /* Pixel card */
+  @apply bg-white dark:bg-dark-800 border-3 border-dark-700 dark:border-dark-600 p-6;
+  box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.2);
+  transition:
+    transform 0.1s ease,
+    box-shadow 0.1s ease;
+
+  &:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.3);
+  }
+}
+
+@utility pixel-heading {
+  /* Pixel heading */
+  font-family: var(--font-pixel);
+  image-rendering: pixelated;
+  line-height: 1.8;
+}
+
+@utility achievement-badge {
+  /* Achievement badge */
+  @apply inline-flex items-center gap-2 px-3 py-2 rounded-none border-2;
+  font-family: var(--font-pixel);
+  font-size: 8px;
+  image-rendering: pixelated;
+}
+
+@utility tech-tag {
+  /* Tech tag */
+  @apply inline-flex items-center px-2 py-1 text-xs font-mono border;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+@utility pixel-progress {
+  /* Pixel progress bar */
+  @apply h-4 bg-dark-800 dark:bg-dark-700 border-2 border-dark-600 relative overflow-hidden;
+  image-rendering: pixelated;
+}
+
+@utility pixel-progress-fill {
+  @apply h-full transition-all duration-1000 ease-out;
+  background-image: repeating-linear-gradient(
+    90deg,
+    currentColor 0px,
+    currentColor 12px,
+    transparent 12px,
+    transparent 16px
+  );
+}
+
+@utility scanlines {
+  /* Scanline effect */
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.05) 2px,
+      rgba(0, 0, 0, 0.05) 4px
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+}
+
+@utility text-glow {
+  /* Glow text effect */
+  text-shadow:
+    0 0 10px currentColor,
+    0 0 20px currentColor,
+    0 0 40px currentColor;
+}
+
+@utility text-glow-blue {
+  text-shadow:
+    0 0 10px #3b82f6,
+    0 0 20px #3b82f6,
+    0 0 40px #3b82f6;
+}
+
+@utility cursor-blink {
+  /* Cursor blink */
+  &::after {
+    content: '█';
+    animation: pixelBlink 1s steps(1) infinite;
+  }
+}
+
+@utility pixel-divider {
+  /* Pixel divider */
+  height: 4px;
+  background-image: repeating-linear-gradient(
+    90deg,
+    #3b82f6 0px,
+    #3b82f6 8px,
+    transparent 8px,
+    transparent 12px
+  );
+  border: none;
+}
+
+@utility section-container {
+  /* Section container */
+  @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20;
+}
+
+@utility retro-window {
+  /* Retro window */
+  @apply overflow-hidden;
+  border: 3px solid;
+  border-color: #475569;
+  box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.3);
+}
+
+@utility retro-window-header {
+  @apply flex items-center gap-2 px-4 py-3 bg-dark-700 dark:bg-dark-600;
+}
+
+@utility retro-window-btn {
+  @apply w-3 h-3 inline-block;
+  image-rendering: pixelated;
+}
+
+@utility code-block {
+  /* Code block */
+  @apply bg-dark-900 text-green-400 p-4 overflow-x-auto;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  line-height: 1.7;
+  border: 3px solid #334155;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+@utility typing-animation {
+  /* Typing animation */
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid #3b82f6;
+  animation:
+    typing 2s steps(30, end),
+    pixelBlink 0.8s steps(1) infinite;
+}
+
+@utility image-rendering-pixel {
+  image-rendering: pixelated;
+}
+
+@utility font-pixel {
+  font-family: var(--font-pixel);
+}
+
+@utility bg-retro-dark {
+  /* Retro color utilities */
+  background-color: #0f172a;
+}
+
+@utility text-retro-green {
+  color: #22c55e;
+}
+
+@utility border-pixel {
+  border-width: 3px;
+  border-style: solid;
+}
+
+@layer base {
+  :root {
+    --font-pixel: 'Press Start 2P', monospace;
+    --font-body: 'Inter', sans-serif;
+    --pixel-size: 4px;
+    --color-primary: #3B82F6;
+    --color-bg-dark: #0F172A;
+    --color-bg-card: #1E293B;
+    --color-accent: #06B6D4;
+    --color-success: #22C55E;
+    --color-warning: #EAB308;
+    --color-danger: #EF4444;
+    --color-purple: #A855F7;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  ::selection {
+    background-color: #3B82F6;
+    color: white;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0F172A;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #3B82F6;
+    border-radius: 0;
+    image-rendering: pixelated;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #60A5FA;
+  }
+
+  /* Focus styles */
+  :focus-visible {
+    outline: 3px solid #3B82F6;
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
+}
+
+/* Animations */
+@keyframes pixelBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes pixelFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes glitch {
+  0%, 94%, 100% { 
+    transform: translateX(0);
+    clip-path: none;
+  }
+  95% { 
+    transform: translateX(-3px);
+    clip-path: inset(20% 0 60% 0);
+  }
+  96% { 
+    transform: translateX(3px);
+    clip-path: inset(60% 0 20% 0);
+  }
+  97% { 
+    transform: translateX(-1px);
+    clip-path: inset(40% 0 40% 0);
+  }
+}
+
+@keyframes scanLine {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+@keyframes particleRise {
+  0% {
+    transform: translateY(0) scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-200px) scale(0) rotate(180deg);
+    opacity: 0;
+  }
+}
+
+@keyframes rainbowBorder {
+  0% { border-color: #3B82F6; box-shadow: 4px 4px 0 #1D4ED8; }
+  14% { border-color: #06B6D4; box-shadow: 4px 4px 0 #0891B2; }
+  28% { border-color: #22C55E; box-shadow: 4px 4px 0 #15803D; }
+  42% { border-color: #EAB308; box-shadow: 4px 4px 0 #A16207; }
+  57% { border-color: #F97316; box-shadow: 4px 4px 0 #C2410C; }
+  71% { border-color: #EF4444; box-shadow: 4px 4px 0 #B91C1C; }
+  85% { border-color: #A855F7; box-shadow: 4px 4px 0 #7E22CE; }
+  100% { border-color: #3B82F6; box-shadow: 4px 4px 0 #1D4ED8; }
+}
+
+/* Print styles */
+@media print {
+  .no-print { display: none !important; }
+  body { background: white; color: black; }
+  .pixel-border, .pixel-card { box-shadow: none; border: 1px solid #ddd; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
