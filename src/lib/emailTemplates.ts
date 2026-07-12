@@ -65,7 +65,7 @@ export function buildNotificationEmail(data: ContactFormData): string {
                   <td style="padding:32px 32px 24px;text-align:center;">
                     <div style="display:inline-block;background-color:#3B82F6;border:2px solid #60A5FA;padding:8px 16px;margin-bottom:16px;">
                       <span style="font-family:'Courier New',monospace;font-size:14px;color:#ffffff;letter-spacing:2px;font-weight:bold;">
-                        YUDIYA.DEV
+                        YUDIYA DEV
                       </span>
                     </div>
                     <p style="margin:0;font-family:'Courier New',monospace;font-size:11px;color:#64748B;letter-spacing:1px;">
@@ -204,7 +204,7 @@ export function buildNotificationEmail(data: ContactFormData): string {
               <p style="margin:0;font-family:'Courier New',monospace;font-size:10px;color:#475569;
                          text-align:center;letter-spacing:1px;line-height:1.8;">
                 THIS MESSAGE WAS SENT VIA YOUR PORTFOLIO CONTACT FORM<br/>
-                yudiyaahrian.dev &nbsp;·&nbsp; Depok, West Java, Indonesia<br/><br/>
+                yudiya-porto.vercel.app&nbsp;·&nbsp; Depok, West Java, Indonesia<br/><br/>
                 <span style="color:#334155;">▓░▓░▓░▓░▓░▓░▓░▓░▓░▓░▓░▓░▓░▓░</span>
               </p>
 
@@ -288,7 +288,7 @@ export function buildAutoReplyEmail(data: Pick<ContactFormData, "name" | "subjec
                   <td style="padding:32px;text-align:center;">
                     <div style="display:inline-block;background-color:#3B82F6;border:2px solid #60A5FA;padding:8px 16px;margin-bottom:16px;">
                       <span style="font-family:'Courier New',monospace;font-size:14px;color:#ffffff;letter-spacing:2px;font-weight:bold;">
-                        YUDIYA.DEV
+                        YUDIYA DEV
                       </span>
                     </div>
                     <h1 style="margin:16px 0 8px;font-family:'Courier New',monospace;font-size:16px;
@@ -393,7 +393,7 @@ export function buildAutoReplyEmail(data: Pick<ContactFormData, "name" | "subjec
 
               <p style="margin:0;font-family:'Courier New',monospace;font-size:10px;color:#475569;text-align:center;letter-spacing:1px;line-height:1.8;">
                 YOU'RE RECEIVING THIS BECAUSE YOU CONTACTED YUDIYA AHRIAN<br/>
-                VIA THE PORTFOLIO CONTACT FORM AT YUDIYAAHRIAN.DEV<br/><br/>
+                VIA THE PORTFOLIO CONTACT FORM AT yudiya-porto.vercel.app<br/><br/>
                 <span style="color:#334155;">▓░▓░▓░▓░▓░▓░▓░▓░▓░▓░▓░▓░▓░▓░</span>
               </p>
 
@@ -419,6 +419,6 @@ I'll get back to you within 24 hours. If it's urgent, email me directly at yudiy
 ---
 Yudiya Ahrian
 Flutter Developer & Fullstack Engineer
-https://yudiyaahrian.dev
+yudiya-porto.vercel.app
 `.trim();
 }
