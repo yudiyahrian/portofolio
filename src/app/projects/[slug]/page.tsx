@@ -9,7 +9,7 @@ import { categoryColors, categoryLabels } from "@/lib/utils";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 
 interface Props {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
@@ -17,7 +17,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const project = getProjectBySlug(params.slug);
+  const { slug } = await params;
+  const project = getProjectBySlug(slug);
   if (!project) return { title: "Project Not Found" };
   return {
     title: project.title,
@@ -31,7 +32,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default function ProjectDetailPage({ params }: Props) {
-  const project = getProjectBySlug(params.slug);
+  const { slug } = await params;
+  const project = getProjectBySlug(slug);
   if (!project) notFound();
 
   const categoryColor = categoryColors[project.category];
