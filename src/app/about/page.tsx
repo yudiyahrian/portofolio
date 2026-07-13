@@ -1,7 +1,22 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { MapPin, Calendar, Download } from "lucide-react";
+import {
+  MapPin,
+  Calendar,
+  Download,
+  Laptop2,
+  Bean,
+  Bug,
+  Smartphone,
+  BookOpen,
+  Gamepad2,
+  Star,
+  Package,
+  SmartphoneIcon,
+  Axe,
+} from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { siteConfig } from "@/data/site";
 import SectionHeader from "@/components/ui/SectionHeader";
 import ScrollReveal from "@/components/ui/ScrollReveal";
@@ -12,36 +27,43 @@ export const metadata: Metadata = {
   description: `Learn more about ${siteConfig.name} — Flutter Developer and Fullstack Engineer based in Depok, Indonesia.`,
 };
 
-const funFacts = [
-  { icon: "🥭", label: "Mango consumed", value: "Too many" },
-  { icon: "💻", label: "Lines of code", value: "~500K" },
-  { icon: "🐛", label: "Bugs squashed", value: "Lost count" },
-  { icon: "📱", label: "Apps shipped", value: "10+" },
-  { icon: "📚", label: "Tech docs read", value: "Many" },
-  { icon: "🎮", label: "Hours gaming", value: "Some" },
+interface FunFact {
+  icon: LucideIcon;
+  label: string;
+  value: string;
+  color: string;
+}
+
+const funFacts: FunFact[] = [
+  { icon: Bean, label: "Mango consumed", value: "Too many", color: "#F97316" },
+  { icon: Laptop2, label: "Lines of code", value: "~500K", color: "#3B82F6" },
+  { icon: Bug, label: "Bugs squashed", value: "Lost count", color: "#EF4444" },
+  { icon: Smartphone, label: "Apps shipped", value: "10+", color: "#06B6D4" },
+  { icon: BookOpen, label: "Tech docs read", value: "Many", color: "#A855F7" },
+  { icon: Gamepad2, label: "Hours gaming", value: "Some", color: "#22C55E" },
 ];
 
 const values = [
   {
-    icon: "🏗️",
+    icon: Package,
     title: "Clean Architecture First",
     description:
       "I believe structure isn't overhead — it's investment. Every project I build uses clean architecture principles so it stays maintainable as it grows.",
   },
   {
-    icon: "📱",
+    icon: SmartphoneIcon,
     title: "Cross-Platform by Default",
     description:
       "Flutter lets me build once and ship everywhere without compromise. I design for both web and mobile from day one, not as an afterthought.",
   },
   {
-    icon: "🔨",
+    icon: Axe,
     title: "Ship Early, Iterate Fast",
     description:
       "Real feedback from real users beats speculation. I focus on getting working software deployed quickly, then refining based on what I learn.",
   },
   {
-    icon: "📖",
+    icon: BookOpen,
     title: "Always Learning",
     description:
       "The tech stack changes fast. I dedicate time every week to exploring new tools, reading documentation, and building small experiments.",
@@ -51,7 +73,7 @@ const values = [
 export default function AboutPage() {
   return (
     <div className="pt-24 pb-20">
-      {/* Hero */}
+      {/* ── Hero ──────────────────────────────────────────────────────── */}
       <section className="section-container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <ScrollReveal>
@@ -130,7 +152,7 @@ export default function AboutPage() {
                   style={{ boxShadow: "8px 8px 0px #1D4ED8" }}
                 >
                   <Image
-                    src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=400&q=80"
+                    src="/my.jpeg"
                     alt="Yudiya Ahrian — Profile photo"
                     fill
                     className="object-cover"
@@ -141,7 +163,7 @@ export default function AboutPage() {
                 <div className="absolute -bottom-3 -right-3 w-6 h-6 bg-pixel-blue" />
                 <div className="absolute -bottom-4 left-4 bg-dark-900 border-2 border-pixel-yellow px-3 py-1.5">
                   <span className="font-pixel text-[8px] text-pixel-yellow">
-                    2+ YRS EXP ⭐
+                    2+ YRS EXP <Star color="yellow"></Star>
                   </span>
                 </div>
               </div>
@@ -150,7 +172,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Values */}
+      {/* ── Values ────────────────────────────────────────────────────── */}
       <section className="section-container py-0 mt-20">
         <ScrollReveal>
           <SectionHeader
@@ -168,7 +190,7 @@ export default function AboutPage() {
                   role="img"
                   aria-label={value.title}
                 >
-                  {value.icon}
+                  <value.icon></value.icon>
                 </div>
                 <div>
                   <h3 className="font-pixel text-[10px] text-dark-900 dark:text-white mb-2 leading-relaxed">
@@ -184,7 +206,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Fun facts */}
+      {/* ── Fun Facts — Lucide icons ──────────────────────────────────── */}
       <section className="section-container mt-20">
         <ScrollReveal>
           <SectionHeader
@@ -194,27 +216,39 @@ export default function AboutPage() {
           />
         </ScrollReveal>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-          {funFacts.map((fact, i) => (
-            <ScrollReveal key={fact.label} delay={i * 0.08}>
-              <div className="pixel-card text-center">
-                <div
-                  className="text-3xl mb-2"
-                  role="img"
-                  aria-label={fact.label}
-                >
-                  {fact.icon}
+          {funFacts.map((fact, i) => {
+            const Icon = fact.icon;
+            return (
+              <ScrollReveal key={fact.label} delay={i * 0.08}>
+                <div className="pixel-card text-center group hover:scale-[1.02] transition-transform">
+                  {/* Icon box styled to match achievement cards */}
+                  <div className="flex justify-center mb-3">
+                    <div
+                      className="w-11 h-11 border-2 flex items-center justify-center transition-colors"
+                      style={{ borderColor: fact.color }}
+                    >
+                      <Icon
+                        size={22}
+                        style={{ color: fact.color }}
+                        aria-hidden="true"
+                      />
+                    </div>
+                  </div>
+                  <div
+                    className="font-pixel text-sm mb-1"
+                    style={{ color: fact.color }}
+                  >
+                    {fact.value}
+                  </div>
+                  <div className="text-xs text-slate-500">{fact.label}</div>
                 </div>
-                <div className="font-pixel text-sm text-pixel-blue mb-1">
-                  {fact.value}
-                </div>
-                <div className="text-xs text-slate-500">{fact.label}</div>
-              </div>
-            </ScrollReveal>
-          ))}
+              </ScrollReveal>
+            );
+          })}
         </div>
       </section>
 
-      {/* Achievements */}
+      {/* ── Achievements — Lucide icons ───────────────────────────────── */}
       <section className="section-container">
         <ScrollReveal>
           <SectionHeader
@@ -224,27 +258,52 @@ export default function AboutPage() {
           />
         </ScrollReveal>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-          {achievements.map((achievement, i) => (
-            <ScrollReveal key={achievement.id} delay={i * 0.08}>
-              <div
-                className="pixel-card flex flex-col items-center text-center gap-2 p-4"
-                style={{
-                  borderColor: achievement.color,
-                  boxShadow: `4px 4px 0px ${achievement.color}60`,
-                }}
-              >
-                <div className="text-2xl">{achievement.icon}</div>
-                <div>
-                  <h3 className="font-pixel text-[8px] text-dark-900 dark:text-white mb-1 leading-relaxed">
-                    {achievement.title}
-                  </h3>
-                  <p className="text-slate-500 text-xs">
-                    {achievement.description}
-                  </p>
+          {achievements.map((achievement, i) => {
+            const Icon = achievement.icon;
+            return (
+              <ScrollReveal key={achievement.id} delay={i * 0.08}>
+                <div
+                  className="pixel-card flex flex-col items-center text-center gap-3 p-4 group hover:scale-[1.02] transition-transform"
+                  style={{
+                    borderColor: achievement.color,
+                    boxShadow: `4px 4px 0px ${achievement.color}60`,
+                  }}
+                >
+                  {/* Icon inside a pixel-bordered box */}
+                  <div
+                    className="w-11 h-11 border-2 flex items-center justify-center shrink-0"
+                    style={{ borderColor: achievement.color }}
+                  >
+                    <Icon
+                      size={22}
+                      style={{ color: achievement.color }}
+                      aria-hidden="true"
+                    />
+                  </div>
+                  <div>
+                    <h3 className="font-pixel text-[8px] text-dark-900 dark:text-white mb-1 leading-relaxed">
+                      {achievement.title}
+                    </h3>
+                    <p className="text-slate-500 text-xs leading-relaxed">
+                      {achievement.description}
+                    </p>
+                  </div>
+                  {/* Unlocked ribbon */}
+                  <div
+                    className="w-full pt-2 border-t"
+                    style={{ borderColor: `${achievement.color}30` }}
+                  >
+                    <span
+                      className="font-pixel text-[7px]"
+                      style={{ color: achievement.color }}
+                    >
+                      ✓ UNLOCKED
+                    </span>
+                  </div>
                 </div>
-              </div>
-            </ScrollReveal>
-          ))}
+              </ScrollReveal>
+            );
+          })}
         </div>
       </section>
     </div>

@@ -91,7 +91,7 @@ The entire UI was first designed in Figma, then built with Next.js and Tailwind 
 
 The dashboard gives managers a bird's-eye view of all active audit projects, their statuses, and team assignments. Auditors get their own task queue showing what needs supervision, what needs guidance, and what they are personally responsible for auditing.
 
-The project was built with Next.js for the frontend and a Laravel-powered REST API for the backend. Role-based access control differentiates between Manager in Charge, Leader, and Team Member views, ensuring each user only sees what is relevant to their role.`,
+The project was built with Flutter for the frontend and a Firebase for the backend. Role-based access control differentiates between Manager in Charge, Leader, and Team Member views, ensuring each user only sees what is relevant to their role.`,
     image: "/images/audify/thumbnail_audify.webp",
     images: [
       "/images/audify/proses.webp",

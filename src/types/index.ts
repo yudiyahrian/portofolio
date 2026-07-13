@@ -1,3 +1,5 @@
+import type { LucideIcon } from "lucide-react";
+
 export interface Project {
   id: string;
   slug: string;
@@ -47,7 +49,7 @@ export interface Skill {
   name: string;
   level: number;
   category: SkillCategory;
-  icon?: string;
+  icon?: LucideIcon;
   color: string;
 }
 
@@ -87,7 +89,7 @@ export interface Achievement {
   id: string;
   title: string;
   description: string;
-  icon: string;
+  icon: LucideIcon;
   color: string;
   unlocked: boolean;
   unlockedAt?: string;
@@ -96,8 +98,14 @@ export interface Achievement {
 export interface NavItem {
   label: string;
   href: string;
-  icon: string;
+  icon: LucideIcon;
   shortcut?: string;
+}
+
+export interface FunFact {
+  icon: LucideIcon;
+  label: string;
+  value: string;
 }
 
 export interface SocialLink {

@@ -1,11 +1,21 @@
+import {
+  Home,
+  User,
+  Briefcase,
+  Rocket,
+  Zap,
+  BookOpen,
+  Mail,
+} from "lucide-react";
+
 export const siteConfig = {
   name: "Yudiya Ahrian",
   title: "Yudiya Ahrian Portfolio",
   description:
     "Full-Stack Developer with 2+ years of experience building cross-platform mobile and web applications. Specialized in Flutter, Next.js, Laravel, and Firebase.",
   tagline: "Fullstack & Mobile Developer",
-  url: "https://yudiyaahrian.dev",
-  ogImage: "https://yudiyaahrian.dev/og-image.png",
+  url: "https://yudiya-porto.vercel.app",
+  ogImage: "https://yudiya-porto.vercel.app/og-image.png",
   email: "yudiyaahrian@gmail.com",
   location: "Depok, Jawa Barat, Indonesia",
   openToWork: true,
@@ -13,16 +23,15 @@ export const siteConfig = {
     github: "https://github.com/yudiyahrian",
     twitter: "https://twitter.com/yudiyahrian",
     linkedin: "https://linkedin.com/in/yudiyahrian",
-    // devto: "https://dev.to/yudiyaahrian",
   },
   nav: [
-    { label: "Home", href: "/", icon: "🏠" },
-    { label: "About", href: "/about", icon: "👤" },
-    { label: "Experience", href: "/experience", icon: "💼" },
-    { label: "Projects", href: "/projects", icon: "🚀" },
-    { label: "Skills", href: "/skills", icon: "⚡" },
-    { label: "Blog", href: "/blog", icon: "📝" },
-    { label: "Contact", href: "/contact", icon: "✉️" },
+    { label: "Home", href: "/", icon: Home },
+    { label: "About", href: "/about", icon: User },
+    { label: "Experience", href: "/experience", icon: Briefcase },
+    { label: "Projects", href: "/projects", icon: Rocket },
+    { label: "Skills", href: "/skills", icon: Zap },
+    { label: "Blog", href: "/blog", icon: BookOpen },
+    { label: "Contact", href: "/contact", icon: Mail },
   ],
   roles: [
     "Flutter Developer",
