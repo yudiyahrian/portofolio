@@ -185,7 +185,7 @@ export default function ResumePage() {
                       return (
                         <div key={cat.id}>
                           <div className="text-xs font-semibold text-dark-700 dark:text-slate-300 mb-1.5 flex items-center gap-1">
-                            <span>{cat.icon}</span>
+                            <cat.icon/>
                             {cat.label}
                           </div>
                           <p className="text-sm text-slate-500 font-mono">
